@@ -67,10 +67,8 @@ pick it up from there.
 [6]: https://doc.akka.io/docs/alpakka-kafka/current/home.html
 [7]: https://projectlombok.org 
  
-## What do you need to do
-You need to provide an implementation for the `POST /user/accreditation`
-endpoint. This endpoint is called when users submit a new accreditation
-data, which then must pushed to a third party verification service. The
+## The requirement
+The core requirement is the implementation of the `POST /user/accreditation` endpoint. This endpoint is called when users submit a new accreditation data payload, which then must pushed to a third party verification service. The
 endpoint takes a payload in the following shape:
 
 ```json 
@@ -97,10 +95,10 @@ return a `400 Bad Request` response. You're free to use other HTTP status codes
 for conditions not described here. Clients of this endpoint are expected to
 retry requests that complete with any status code other than 200 or 400.
 
-There's an example implementation in
-[PR #25](https://github.com/yieldstreet/challenges/pull/25) for this repository.
-Take a look at it if you have no idea where to start, but be warned that this
-implementation is naïve and flawed.g 
+## Your coding challenges
+There are two challenges embedded in this:
+* PR review: A developer has taken a stab at implementing this and issues a PR: [PR #25](https://github.com/yieldstreet/challenges/pull/25). As a peer reviewing this PR knowing the context of this requirement, will you approve this PR? If not, why not? 
+* A better implementation: Can you provide your own implementation for the `POST /user/accreditation` endpoint that's better than [PR #25](https://github.com/yieldstreet/challenges/pull/25)
 
 ### Queuing requests
 As hinted above, to provide consistent latencies, the accreditation endpoint
