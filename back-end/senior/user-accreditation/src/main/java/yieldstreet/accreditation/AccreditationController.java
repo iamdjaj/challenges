@@ -1,7 +1,6 @@
 package yieldstreet.accreditation;
 
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;
 
@@ -13,14 +12,23 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.Data;
+import yieldstreet.user.UserService;
 import yieldstreet.verification.VerificationRequest;
+import yieldstreet.verification.VerificationServiceProvider;
 
 public class AccreditationController extends Controller {
-    private final ObjectMapper objectMapper;
+    private final ObjectMapper                objectMapper;
+    private final VerificationServiceProvider verificationServiceProvider;
+    private final UserService                 userService;
 
     @Inject
-    public AccreditationController(ObjectMapper objectMapper) {
+    public AccreditationController(
+        ObjectMapper objectMapper,
+        VerificationServiceProvider verificationServiceProvider,
+        UserService userService) {
         this.objectMapper = objectMapper;
+        this.verificationServiceProvider = verificationServiceProvider;
+        this.userService = userService;
     }
 
     public CompletionStage<Result> accreditation(Http.Request httpRequest) throws JsonProcessingException {
@@ -28,12 +36,11 @@ public class AccreditationController extends Controller {
         var body = objectMapper.treeToValue(httpRequest.body().asJson(), RequestBody.class);
         var request = new VerificationRequest(requestId, body.getAccreditation());
 
-        // TODO: this is where your solution comes in
-        // It should provide consistent response times shielding clients from
-        // the wildly varying latencies and errors of the verification service.
-        // You don't have to wait for a request to be processed by the
-        // verification service before returning from this endpoint.
-        return CompletableFuture.completedFuture(TODO(httpRequest));
+        return verificationServiceProvider.verify(request).thenApply(response -> {
+            userService.update(body.getUserId(), response.isAccredited());
+            var json = objectMapper.valueToTree(response);
+            return ok(json);
+        });
     }
 
     @Data
