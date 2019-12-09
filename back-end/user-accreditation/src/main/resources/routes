@@ -1,0 +1,4 @@
+GET         /user/:id/accredited                    yieldstreet.user.UserController.get(id: String)
+GET         /user/:id/subscribe                     yieldstreet.user.UserController.subscribe(id: String)
+POST        /user/:id/accredited/:accredited        yieldstreet.user.UserController.update(id: String, accredited: Boolean)
+POST        /user/accreditation                     yieldstreet.accreditation.AccreditationController.accreditation(request: Request)
