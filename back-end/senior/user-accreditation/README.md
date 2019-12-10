@@ -97,8 +97,10 @@ retry requests that complete with any status code other than 200 or 400.
 
 ## Your coding challenges
 There are two challenges embedded in this:
-* PR review: A developer has taken a stab at implementing this and issued a [PR](https://github.com/yieldstreet/challenges/pull/25). You're a fellow developer tasked with reviewing this PR. Knowing the context of this requirement, will you approve this PR? If not, why not? **NOTE: PLEASE DO NOT COMMENT DIRECTLY ON THE PR, OR MERGE IT. PROVIDE YOUR FEEDBACK OFFLINE IN YOUR SOLUTION**
+* PR review: A developer has taken a stab at implementing this and issued a [PR](https://github.com/yieldstreet/challenges/pull/25). You're a fellow developer tasked with reviewing this PR. Knowing the context of this requirement, will you approve this PR? If not, why not? 
 * A better implementation: Can you provide your own implementation for the `POST /user/accreditation` endpoint that's better than [PR #25](https://github.com/yieldstreet/challenges/pull/25)
+
+**NOTE: PLEASE DO NOT COMMENT DIRECTLY ON THE PR, MERGE IT, OR ISSUE NEW PRs WITH YOUR SOLUTION. PROVIDE YOUR SOLUTION OFFLINE TO US IN A ZIP FILE, OR FORK THIS REPO YOUR OWN PRIVATE REPO AND PROVIDE YOUR ANSWERS THERE**
 
 ### Queuing requests
 As hinted above, to provide consistent latencies, the accreditation endpoint
