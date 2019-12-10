@@ -97,7 +97,7 @@ retry requests that complete with any status code other than 200 or 400.
 
 ## Your coding challenges
 There are two challenges embedded in this:
-* PR review: A developer has taken a stab at implementing this and issues a PR: [PR #25](https://github.com/yieldstreet/challenges/pull/25). As a peer reviewing this PR knowing the context of this requirement, will you approve this PR? If not, why not? 
+* PR review: A developer has taken a stab at implementing this and issues a [PR](https://github.com/yieldstreet/challenges/pull/25). As a peer reviewing this PR knowing the context of this requirement, will you approve this PR? If not, why not? 
 * A better implementation: Can you provide your own implementation for the `POST /user/accreditation` endpoint that's better than [PR #25](https://github.com/yieldstreet/challenges/pull/25)
 
 ### Queuing requests
